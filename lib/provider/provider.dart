@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:diskon/model/diskon.dart';
 import 'package:diskon/api/resource.dart';
 import 'package:diskon/main.dart';
+import 'package:diskon/model/gajiModel.dart';
 import 'package:diskon/model/mahasiswaModel.dart';
 import 'package:diskon/model/propertiModel.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class PostDataProvider extends ChangeNotifier {
   List<GetMahasiswa> _maha = [];
   List<GetMahasiswa> get maha => _maha;
   Diskon post = Diskon();
+  late GajiModel gajiModel;
 
   bool loading = false;
   Future<void> getMahasiswa() async {
@@ -38,6 +40,13 @@ class PostDataProvider extends ChangeNotifier {
 
     loading = false;
 
+    notifyListeners();
+  }
+
+  kirimGaji(context, title, userId) async {
+    loading = true;
+    gajiModel = await postDummy(context, title, userId);
+    loading = false;
     notifyListeners();
   }
 }

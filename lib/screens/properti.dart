@@ -2,6 +2,7 @@ import 'package:diskon/main.dart';
 import 'package:diskon/provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:lottie/lottie.dart';
 
 class Properti extends StatefulWidget {
   Properti({Key? key}) : super(key: key);
@@ -41,8 +42,16 @@ class _PropertiState extends State<Properti> {
           final bala = value.maha;
           // var list = maha.maha.data!.length;
           if (isLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return Column(
+              children: [
+                Center(
+                  child: Lottie.asset('assets/lottie/sliders.json'),
+                ),
+                Text(
+                  'Loading Data .. ...',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                )
+              ],
             );
           }
 
