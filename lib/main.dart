@@ -1,4 +1,5 @@
 import 'package:diskon/provider/provider.dart';
+import 'package:diskon/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:diskon/screens/homepage.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => PostDataProvider()),
       ],
       child: MaterialApp(
-        home: HomePage(),
+        home: LoginPage(),
       ),
     );
   }

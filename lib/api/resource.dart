@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:diskon/model/gajiModel.dart';
+import 'package:diskon/model/loginModel.dart';
 import 'package:diskon/model/mahasiswaModel.dart';
 import 'package:diskon/model/propertiModel.dart';
 import 'package:flutter/material.dart';
@@ -112,6 +113,27 @@ Future<GajiModel> postDummy(
     print(res.body);
 
     return GajiModel.fromJson(convert.json.decode(res.body));
+  } else {
+    throw Exception('Something went wrong');
+  }
+}
+
+Future<LoginModel> login(
+    BuildContext context, String email, String pass) async {
+  var body = {"email": email, "password": pass};
+
+  final res = await http
+      .post(Uri.parse('https://maisyaroh.com/server_sarpras/api/user/login'),
+          headers: {'Content-type': 'application/json'},
+          encoding: convert.Encoding.getByName("utf-8"),
+          body: body)
+      .timeout(const Duration(seconds: 11));
+
+  if (res.statusCode == 200) {
+    print(res.statusCode);
+    print(res.body);
+
+    return LoginModel.fromJson(convert.json.decode(res.body));
   } else {
     throw Exception('Something went wrong');
   }
